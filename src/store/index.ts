@@ -1,11 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
   },
 });
 
-// 从 store 本身推断 `RootState` 和 `AppDispatch` 类型
-export type RootState = ReturnType<typeof store.getState>;
-// 推断类型：{posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
